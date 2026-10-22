@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- Tetris game. A standalone rules engine tracks the board, active piece, score, and timers; the page maps input to engine actions. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Play Tetris with keyboard or touch controls, piece hold, levels, and a ghost preview.">
+    <title>Tetris — Three.js</title>
+    <link rel="stylesheet" href="/Lib/Bootstrap4.0/css/bootstrap.min.css"><link rel="stylesheet" href="/NavBar.css"><link rel="stylesheet" href="./tetris.css"><link rel="stylesheet" href="/Theme.css?v=2">
+    <script type="importmap">{ "imports": { "three": "../../Lib/Three/Three.js" } }</script><script src="/NavBar.js" defer></script>
+    <link rel="canonical" href="https://louisdubeux.com/Projects/tetris/tetris.html">
+</head>
+<body>
+    <!-- Shared navigation is populated by /NavBar.js. -->
+    <div id="nav-placeholder"></div>
+    <main class="tetris-layout">
+        <section id="tetris-view" aria-label="Tetris playfield">
+            <div id="game-overlay"><h2 id="overlay-title">Ready to play?</h2><p id="overlay-message">Complete rows to score points.</p><button id="overlay-action" class="btn btn-primary" type="button">Start game</button></div>
+            <p id="scene-error" role="alert" hidden></p>
+        </section>
+        <aside class="tetris-panel">
+            <p class="section-label">Arcade · Three.js</p><h1>Tetris</h1>
+            <p id="game-status" role="status" aria-live="polite">Ready</p>
+            <dl class="stats"><div><dt>Score</dt><dd id="score">0</dd></div><div><dt>Level</dt><dd id="level">1</dd></div><div><dt>Lines</dt><dd id="lines">0</dd></div></dl>
+            <div class="previews"><section><h2>Hold</h2><canvas id="hold-preview" width="128" height="90" aria-label="No held piece"></canvas></section><section><h2>Next</h2><canvas id="next-preview" width="128" height="220" aria-label="Upcoming pieces"></canvas></section></div>
+            <div class="actions"><button id="pause" class="btn btn-outline-light" type="button" disabled>Pause</button><button id="restart" class="btn btn-outline-light" type="button">Restart</button></div>
+            <div class="touch-controls" aria-label="Game controls"><button data-action="left" aria-label="Move left">←</button><button data-action="rotate" aria-label="Rotate clockwise">↻</button><button data-action="right" aria-label="Move right">→</button><button data-action="down" aria-label="Soft drop">↓</button><button data-action="hold">Hold</button><button data-action="drop">Drop</button></div>
+            <small>← → move · ↑ / X rotate clockwise · Z rotate counterclockwise · ↓ soft drop · Space hard drop · C hold · P / Escape pause.<br>Clear 10 lines to level up. The outlined piece shows where a hard drop will land.</small>
+        </aside>
+    </main>
+    <!-- Load the project entry module after its controls and view containers exist. -->
+    <script type="module" src="./tetris.js"></script>
+</body>
+</html>
